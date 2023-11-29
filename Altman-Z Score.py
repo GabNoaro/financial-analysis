@@ -1,3 +1,13 @@
+"""
+The Z-score formula for predicting bankruptcy was published in 1968 by Edward I.
+Altman, who was, at the time, an Assistant Professor of Finance at New York University.
+The formula may be used to predict the probability that a firm will go into bankruptcy within two years.
+Z-scores are used to predict corporate defaults and an easy-to-calculate control measure for the financial distress status of companies in academic studies.
+The Z-score uses multiple corporate income and balance sheet values to measure the financial health of a company. [Wikipedia]
+
+"""
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
