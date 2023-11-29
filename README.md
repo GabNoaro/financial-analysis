@@ -1,1 +1,23 @@
 # financial-modeling
+# financial-analysis
+Here you can find different scripts to perform financial analysis with data from the Financial Modeling Prep API.
+Please read the below points before using:
+- Thanks to the headless architecture you can use the different scripts even with another API, as long as you check that the nomenclature of the columns is the same.
+-  Please note, that the purpose of these scripts is educational only, I'm not a financial advisor and I coded these scripts just for fun. You may use them as you please, but note that, if you were to use these scripts for investing, investing implies capital at risk, so be very careful, make sure you understand the theory behind the models, and check that the code is 100% working properly. In other words, make sure that this want is best for you and your goal, and rememeber that the wand doesn't make the wizard (even if it helps).
+- Please pay attention to the comments in the code, since there are a few values you should input, such as the limit of the API requests and the industry of the company that you want to analyze with the Altman Z-Score (you have three options there).
+- There may be changes and improvements in the future, so keep an eye on the folder. If something is not working, it may be due to some change in Python packages or API, so please notify me and I'll get it sorted.
+- The financial models used in the code may have some variations, for example the Altman Z-score uses book value instead of market value for manufacturer, because I think it has more sense that way, especially since market values now fluctuate much more than the used to when the scoring system was developed.
+- You may also want to make some variation in the models, such as in the Piotroski score, since sompe professionals like to leave some parameters out for a simplified version.
+
+
+- # Financial Modeling Scripts
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+**Disclaimer:** This repository contains Python scripts for financial modeling. The author is not a financial advisor, and the scripts are provided for educational and informational purposes only. The author makes no representations or warranties regarding the accuracy, completeness, or suitability of the code for any purpose. Users of these scripts are responsible for their own investment decisions and should seek the advice of a qualified financial professional.
+
+**Use at Your Own Risk:** Investing in financial markets involves risk, and past performance is not indicative of future results. The author shall not be held liable for any capital loss, financial damage, or legal consequences resulting from the use of these scripts.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
