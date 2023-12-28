@@ -8,9 +8,6 @@ For example, an M-score value of -2.50 suggests a low likelihood of manipulation
 If M-score is greater than −1.78, the company is likely to be a manipulator.
 For example, an M-score value of -1.50 suggests a high likelihood of manipulation.
 
-
-[Wikipedia]
-
 """
 
 import pandas as pd
