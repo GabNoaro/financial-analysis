@@ -30,7 +30,7 @@ import os
 sns.set(style="whitegrid")
 
 # Define the symbols for the selected tickers
-symbols_str = 'TSCO,MRK,SBRY'
+symbols_str = 'CRM,ORCL,GOOGL,MSFT'
 symbols = symbols_str.split(',')
 
 # Define the directory to store pickle files
@@ -174,7 +174,7 @@ ohlscore_df = pd.DataFrame(ohlscore_data)
 ohlscore_df = ohlscore_df.sort_values(by='Date/Period')
 
 # Save the DataFrame to a CSV file
-ohlscore_df.to_csv('ohlson_oscore_results.csv', index=False)
+ohlscore_df.to_csv(f'ohlson_oscore_results_for_{symbols_str}.csv', index=False)
 
 # Display the DataFrame
 print("Ohlson O-Score DataFrame:")

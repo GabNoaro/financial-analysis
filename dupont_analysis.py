@@ -8,7 +8,7 @@ import math
 sns.set(style="whitegrid")
 
 # Define the symbols for the selected tickers
-symbols_str = 'TSCO,MRK,MPW,MSFT'
+symbols_str = 'CRM,ORCL,GOOGL,MSFT'
 symbols = symbols_str.split(',')
 
 # Define the directory to store pickle files
@@ -91,57 +91,6 @@ def calculate_dupont(symbol, income_statement, balance_sheet):
 
     # Return the calculated values as a 1D array
     return [operating_profit_margin, tax_burden, interest_burden, asset_turnover, financial_leverage_ratio], dupont_df
-
-    """
-    # Plot Dupont components
-    plt.figure(figsize=(12, 6))
-    plt.plot(dupont_df['Date'], dupont_df['Net Profit Margin'], label='Net Profit Margin', marker='o')
-    plt.plot(dupont_df['Date'], dupont_df['Asset Turnover'], label='Asset Turnover', marker='x')
-    plt.plot(dupont_df['Date'], dupont_df['Financial Leverage Ratio'], label='Financial Leverage Ratio', marker='x')
-
-    plt.title(f'High Level Dupont Analysis for {symbol}')
-    plt.xlabel('Date')
-    plt.ylabel('Ratio')
-    plt.legend()
-    plt.show()
-
-    # Plot Dupont granular components
-    plt.figure(figsize=(12, 6))
-    plt.plot(dupont_df['Date'], dupont_df['Tax Burden'], label='Tax Burden', marker='o')
-    plt.plot(dupont_df['Date'], dupont_df['Interest Burden'], label='Interest Burden', marker='o')
-    plt.plot(dupont_df['Date'], dupont_df['Operating Profit Margin'], label='Operating Profit Margin', marker='o')
-    plt.plot(dupont_df['Date'], dupont_df['Asset Turnover'], label='Asset Turnover', marker='x')
-    plt.plot(dupont_df['Date'], dupont_df['Financial Leverage Ratio'], label='Financial Leverage Ratio', marker='x')
-
-    plt.title(f'High Level Dupont Analysis for {symbol}')
-    plt.xlabel('Date')
-    plt.ylabel('Ratio')
-    plt.legend()
-    plt.show()
-
-    # Filter the DataFrame for the most recent year
-    most_recent_year = dupont_df['Date'].dt.year.max()
-    dupont_df_recent_year = dupont_df[dupont_df['Date'].dt.year == most_recent_year]
-
-    # Extract values as NumPy arrays
-    operating_profit_margin_r = dupont_df_recent_year['Operating Profit Margin'].values
-    tax_burden_r = dupont_df_recent_year['Tax Burden'].values
-    interest_burden_r = dupont_df_recent_year['Interest Burden'].values
-    asset_turnover_r = dupont_df_recent_year['Asset Turnover'].values
-    financial_leverage_ratio_r = dupont_df_recent_year['Financial Leverage Ratio'].values
-
-    # Create a pie chart
-    labels_pie = ['Operating Profit Margin', 'Tax Burden', 'Interest Burden', 'Asset Turnover',
-                  'Financial Leverage Ratio']
-    values_pie = [operating_profit_margin_r.sum(), tax_burden_r.sum(), interest_burden_r.sum(),
-                  asset_turnover_r.sum(), financial_leverage_ratio_r.sum()]
-
-    plt.figure(figsize=(8, 8))
-    plt.pie(values_pie, labels=labels_pie, autopct='%1.1f%%', startangle=90)
-    plt.title(f'Dupont Analysis for {symbol} - for year {most_recent_year}')
-    plt.show()
-    
-    """
 
 
 # Check if there's only one symbol

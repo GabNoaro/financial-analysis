@@ -8,6 +8,9 @@ For example, an M-score value of -2.50 suggests a low likelihood of manipulation
 If M-score is greater than −1.78, the company is likely to be a manipulator.
 For example, an M-score value of -1.50 suggests a high likelihood of manipulation.
 
+
+[Wikipedia]
+
 """
 
 import pandas as pd
@@ -20,7 +23,7 @@ import os
 sns.set(style="whitegrid")
 
 # Define the symbols for the selected tickers
-symbols_str = 'TSCO,MRK'
+symbols_str = 'CRM,ORCL,GOOGL,MSFT'
 symbols = symbols_str.split(',')
 
 # Define the directory to store pickle files
@@ -194,7 +197,7 @@ mscore_df = np.round(mscore_df, 2)
 mscore_df = mscore_df.sort_values(by='Date/Period')
 
 # Save the DataFrame to a CSV file
-mscore_df.to_csv('beneish_mscore_results.csv', index=False)
+mscore_df.to_csv(f'beneish_mscore_results_for_{symbols_str}.csv', index=False)
 
 # Display the DataFrame
 print("Beneish M-Score DataFrame:")

@@ -163,8 +163,8 @@ fscore_df = fscore_df.sort_values(by='Date/Period')
 components_df = components_df.sort_values(by='Date/Period')
 
 # Save the DataFrames to CSV files
-fscore_df.to_csv('piotroski_fscore_results.csv', index=False)
-components_df.to_csv('piotroski_components_results.csv', index=False)
+fscore_df.to_csv(f'piotroski_fscore_results_for_{symbols_str}.csv', index=False)
+components_df.to_csv(f'piotroski_components_results_for_{symbols_str}.csv', index=False)
 
 # Display the DataFrames
 print("Piotroski F-Score DataFrame:")
