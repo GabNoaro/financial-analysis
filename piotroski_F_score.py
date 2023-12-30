@@ -15,7 +15,7 @@ import os
 sns.set(style="whitegrid")
 
 # Define the symbols for the selected tickers
-symbols_str = 'TSCO,MRK,SBRY,MSFT,AAPL,ABCL,AMKR,MPW,BBY,MBGAF,DTRUY,FL,BETS B,AMZN'
+symbols_str = 'CRM,ORCL,GOOGL,MSFT'
 symbols = symbols_str.split(',')
 
 # Define the directory to store pickle files
@@ -201,11 +201,13 @@ component_names = ['Profitability', 'Operating Cash Flow Positive', 'Change in R
                    'Accruals', 'Change in Leverage', 'Change in Liquidity',
                    'Equity Issues', 'Change in Gross Margin', 'Change in Asset Turnover']
 
-# Create a grid of line charts for each component
-fig = plt.figure(figsize=(15, 4))
 
-for i, component in enumerate(component_names, 1):  # Start the index from 1
-    ax = plt.subplot(3, 3, i)
+# Create a grid of line charts for each component
+fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(15, 4), sharey=True, sharex=True)  # Reduced height
+
+for i, component in enumerate(component_names, 0):  # Start the index from 0
+    row, col = divmod(i, 3)
+    ax = axes[row, col]
 
     for symbol in symbols:
         symbol_data = components_df[components_df['Symbol'] == symbol]
@@ -216,12 +218,15 @@ for i, component in enumerate(component_names, 1):  # Start the index from 1
     ax.set_ylabel('')
     ax.legend().set_visible(False)  # Hide legend in individual subplots
 
+    # Rotate x-axis labels
+    ax.tick_params(axis='x', rotation=60)
+
 # Create a common legend outside the subplots
 common_legend = fig.legend(labels=symbols, loc='upper left',
-                           fancybox=True, shadow=True, ncol=len(symbols), mode="expand")
+                           fancybox=True, shadow=True, ncol=len(symbols))
 
-# Adjust the space between subplots and leave space on top for the common legend
-plt.subplots_adjust(wspace=0.1, hspace=0.1, top=0.1, bottom=0.00)
+# Adjust the space between subplots, leave space on top for the common legend, and start a bit lower
+plt.subplots_adjust(wspace=0.1, hspace=0.5, top=0.85, bottom=0.15)  # Adjust the bottom value
 
 # Adjust layout to make room for the common legend
 plt.tight_layout()
