@@ -5,7 +5,6 @@ The formula may be used to predict the probability that a firm will go into bank
 Z-scores are used to predict corporate defaults and an easy-to-calculate control measure for the financial distress
 status of companies in academic studies.
 The Z-score uses multiple corporate income and balance sheet values to measure the financial health of a company.
-
 """
 
 
@@ -157,12 +156,15 @@ zscore_df = pd.DataFrame(zscore_data)
 zscore_df = zscore_df.sort_values(by='Date/Period')
 
 # Save the DataFrame to a CSV file
-zscore_df.to_csv(f'altman_zscore_results_for_{symbols_str}.csv', index=False)
+zscore_df.to_csv(f'deliverables/altman_zscore_results_for_{symbols_str}.csv', index=False)
 
 # Display the DataFrame
 print("Altman Z-Score DataFrame:")
 print(zscore_df.to_string(index=False))
 
+# Create a directory for deliverables if it doesn't exist
+deliverables_dir = 'deliverables'
+os.makedirs(deliverables_dir, exist_ok=True)
 
 # Plotting the Altman Z-Score
 plt.figure(figsize=(10, 6))
@@ -202,6 +204,11 @@ for y_tick in np.arange(-0.5, plt.ylim()[1] + 0.5, 1.0):
 
 # Adjust legend position to avoid overlapping with lines
 plt.legend(loc='upper left')
+
+# Save plot in the "deliverables" folder with symbols string in the name
+symbols_str_no_comma = '_'.join(symbols)
+plot_filename = os.path.join(deliverables_dir, f'Altman_Z_Score_{symbols_str_no_comma}.png')
+plt.savefig(plot_filename)
 
 # Show plot
 plt.show()

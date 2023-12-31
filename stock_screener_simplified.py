@@ -7,7 +7,7 @@ import os
 base_url = 'https://financialmodelingprep.com/api/v3/'
 
 # Define the symbols for the selected tickers
-symbols_str = 'AMZN,ABCL,BBY,GOOG,MPW'
+symbols_str = 'AMKR,FORM,RMBS,LSCC,MTSI,ALGM,WOLF,QRVO,IPGP,POWI,SYNA'
 symbols = symbols_str.split(',')
 
 # Define the directory to store pickle files
@@ -122,7 +122,7 @@ stock_screener_df.reset_index(drop=True, inplace=True)
 print(stock_screener_df)
 
 # Save the merged DataFrame to CSV
-stock_screener_df.to_csv('stock_screener_with_dates.csv', index=False)
+stock_screener_df.to_csv(f'deliverables/stock_screener_with_dates_for_{symbols_str}.csv', index=False)
 
 # Convert 'date' to datetime format
 stock_screener_df['date'] = pd.to_datetime(stock_screener_df['date'])
@@ -136,4 +136,4 @@ grouped_df = grouped_df.fillna(0)
 print(grouped_df)
 
 # Save the grouped DataFrame to CSV
-grouped_df.to_csv('stock_screener_grouped.csv', index=False)
+grouped_df.to_csv(f'deliverables/stock_screener_grouped_for_{symbols_str}.csv', index=False)

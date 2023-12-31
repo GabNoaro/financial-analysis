@@ -197,12 +197,16 @@ mscore_df = np.round(mscore_df, 2)
 mscore_df = mscore_df.sort_values(by='Date/Period')
 
 # Save the DataFrame to a CSV file
-mscore_df.to_csv(f'beneish_mscore_results_for_{symbols_str}.csv', index=False)
+mscore_df.to_csv(f'deliverables/beneish_mscore_results_for_{symbols_str}.csv', index=False)
 
 # Display the DataFrame
 print("Beneish M-Score DataFrame:")
 print(mscore_df.to_string(index=False))
 
+
+# Create a directory for deliverables if it doesn't exist
+deliverables_dir = 'deliverables'
+os.makedirs(deliverables_dir, exist_ok=True)
 
 #Plot the results
 # Replace infinite values with a large finite value
@@ -246,6 +250,11 @@ plt.axhline(y=0, color='yellow', linestyle='--', linewidth=2, label='0')
 
 # Adjust legend position to avoid overlapping with lines
 plt.legend(loc='upper left')
+
+# Save plot in the "deliverables" folder with symbols string in the name
+symbols_str_no_comma = '_'.join(symbols)
+plot_filename = os.path.join(deliverables_dir, f'Beneish_M_Score_{symbols_str_no_comma}.png')
+plt.savefig(plot_filename)
 
 # Show plot
 plt.show()

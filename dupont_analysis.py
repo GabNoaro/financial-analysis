@@ -92,6 +92,9 @@ def calculate_dupont(symbol, income_statement, balance_sheet):
     # Return the calculated values as a 1D array
     return [operating_profit_margin, tax_burden, interest_burden, asset_turnover, financial_leverage_ratio], dupont_df
 
+# Create a directory for deliverables if it doesn't exist
+deliverables_dir = 'deliverables'
+os.makedirs(deliverables_dir, exist_ok=True)
 
 # Check if there's only one symbol
 
@@ -110,6 +113,12 @@ if len(symbols) == 1:
         plt.xlabel('Date')
         plt.ylabel('Ratio')
         plt.legend()
+
+        # Save plot in the "deliverables" folder with symbols string in the name
+        symbols_str_no_comma = '_'.join(symbols)
+        plot_filename = os.path.join(deliverables_dir, f'High_Level_Dupont_Analysis_of_{symbols_str_no_comma}.png')
+        plt.savefig(plot_filename)
+
         plt.show()
 
         # Plot Dupont granular components
@@ -124,6 +133,12 @@ if len(symbols) == 1:
         plt.xlabel('Date')
         plt.ylabel('Ratio')
         plt.legend()
+
+        # Save plot in the "deliverables" folder with symbols string in the name
+        symbols_str_no_comma = '_'.join(symbols)
+        plot_filename = os.path.join(deliverables_dir, f'Granular_Dupont_Analysis_of_{symbols_str_no_comma}.png')
+        plt.savefig(plot_filename)
+
         plt.show()
 
         # Filter the DataFrame for the most recent year
@@ -146,6 +161,12 @@ if len(symbols) == 1:
         plt.figure(figsize=(8, 8))
         plt.pie(values_pie, labels=labels_pie, autopct='%1.1f%%', startangle=90)
         plt.title(f'Dupont Analysis for {symbol} - for year {most_recent_year}')
+
+        # Save plot in the "deliverables" folder with symbols string in the name
+        symbols_str_no_comma = '_'.join(symbols)
+        plot_filename = os.path.join(deliverables_dir, f'Pie_Chart_Dupont_Analysis_of_{symbols_str_no_comma}_for_year_{most_recent_year}.png')
+        plt.savefig(plot_filename)
+
         plt.show()
 
 else:
@@ -233,7 +254,7 @@ else:
             components_handles += axes_components[i].get_legend_handles_labels()[0]
             granular_handles += axes_granular[i].get_legend_handles_labels()[0]
 
-    # Create common legends outside of the loop
+    # Create common legends outside the loop
     fig_pie.legend(pie_handles, pie_labels, loc='lower right', bbox_to_anchor=(1, 0),
                    fancybox=True, shadow=True, ncol=5)
     fig_components.legend(components_handles, components_labels, loc='upper left', bbox_to_anchor=(0, 1),
@@ -246,6 +267,17 @@ else:
 
     # Adjust the aspect ratio to shorten the y-axis for line charts
     #plt.subplots_adjust(wspace=0.1, hspace=0.9)  # Adjust the space between subplots
+
+    # Save the figures
+    symbols_str_no_comma = '_'.join(symbols)
+    plot_filename_components = os.path.join(deliverables_dir,
+                                            f'High_Level_Dupont_Analysis_of_{symbols_str_no_comma}.png')
+    plot_filename_granular = os.path.join(deliverables_dir, f'Granular_Dupont_Analysis_of_{symbols_str_no_comma}.png')
+    plot_filename_pie = os.path.join(deliverables_dir, f'Pie_Chart_Dupont_Analysis_of_{symbols_str_no_comma}_for_year_{most_recent_year}.png')
+
+    fig_components.savefig(plot_filename_components)
+    fig_granular.savefig(plot_filename_granular)
+    fig_pie.savefig(plot_filename_pie)
 
     # Show the figures
     plt.show()

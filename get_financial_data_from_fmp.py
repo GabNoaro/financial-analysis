@@ -20,7 +20,7 @@ import os
 base_url = 'https://financialmodelingprep.com/api/v3/'
 
 # Define the symbol for the selected tickers
-symbols_str = 'TSCO,MRK,SBRY'
+symbols_str = 'AMKR,FORM,RMBS,LSCC,MTSI,ALGM,WOLF,QRVO,IPGP,POWI,SYNA'
 symbols = symbols_str.split(',')
 
 # Define the directory to store pickle files
@@ -84,7 +84,8 @@ for symbol in symbols:
 
         except FileNotFoundError:
             # If the pickle file is not found, make the API request and save the DataFrame to a pickle file
-            url_statement = f'{base_url}{statement_type}/{symbol}?apikey={api_key}'
+            period = 'annual' #choose between 'annual' and 'quarter'
+            url_statement = f'{base_url}{statement_type}/{symbol}?period={period}&apikey={api_key}'
             response_statement = requests.get(url_statement)
 
             # Check if the request was successful (status code 200)

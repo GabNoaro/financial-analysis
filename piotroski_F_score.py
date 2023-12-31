@@ -163,8 +163,8 @@ fscore_df = fscore_df.sort_values(by='Date/Period')
 components_df = components_df.sort_values(by='Date/Period')
 
 # Save the DataFrames to CSV files
-fscore_df.to_csv(f'piotroski_fscore_results_for_{symbols_str}.csv', index=False)
-components_df.to_csv(f'piotroski_components_results_for_{symbols_str}.csv', index=False)
+fscore_df.to_csv(f'deliverables/piotroski_fscore_results_for_{symbols_str}.csv', index=False)
+components_df.to_csv(f'deliverables/piotroski_components_results_for_{symbols_str}.csv', index=False)
 
 # Display the DataFrames
 print("Piotroski F-Score DataFrame:")
@@ -175,6 +175,11 @@ print(components_df.to_string(index=False))
 
 
 #PLOTTING THE F-SCORE
+
+# Create a directory for deliverables if it doesn't exist
+deliverables_dir = 'deliverables'
+os.makedirs(deliverables_dir, exist_ok=True)
+
 plt.figure(figsize=(10, 6))
 
 for symbol in symbols:
@@ -190,6 +195,11 @@ plt.tight_layout()
 
 # Customize grid appearance
 plt.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
+
+# Save plot in the "deliverables" folder with symbols string in the name
+symbols_str_no_comma = '_'.join(symbols)
+plot_filename = os.path.join(deliverables_dir, f'Piotroski_F_Score_{symbols_str_no_comma}.png')
+plt.savefig(plot_filename)
 
 # Show plot
 plt.show()
@@ -230,5 +240,10 @@ plt.subplots_adjust(wspace=0.1, hspace=0.5, top=0.85, bottom=0.15)  # Adjust the
 
 # Adjust layout to make room for the common legend
 plt.tight_layout()
+
+# Save plot in the "deliverables" folder with symbols string in the name
+symbols_str_no_comma = '_'.join(symbols)
+plot_filename = os.path.join(deliverables_dir, f'Piotroski_F_Score_Components_{symbols_str_no_comma}.png')
+plt.savefig(plot_filename)
 
 plt.show()

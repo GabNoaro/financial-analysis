@@ -174,12 +174,15 @@ ohlscore_df = pd.DataFrame(ohlscore_data)
 ohlscore_df = ohlscore_df.sort_values(by='Date/Period')
 
 # Save the DataFrame to a CSV file
-ohlscore_df.to_csv(f'ohlson_oscore_results_for_{symbols_str}.csv', index=False)
+ohlscore_df.to_csv(f'deliverables/ohlson_oscore_results_for_{symbols_str}.csv', index=False)
 
 # Display the DataFrame
 print("Ohlson O-Score DataFrame:")
 print(ohlscore_df.to_string(index=False))
 
+# Create a directory for deliverables if it doesn't exist
+deliverables_dir = 'deliverables'
+os.makedirs(deliverables_dir, exist_ok=True)
 
 # Plotting the Ohlson O-Score
 plt.figure(figsize=(10, 6))
@@ -212,6 +215,11 @@ plt.legend(loc='upper left')
 
 # Add a red line at Y = -1.78
 plt.axhline(y=0.5, color='red', linestyle='--', linewidth=2, label='Threshold (0.5)')
+
+# Save plot in the "deliverables" folder with symbols string in the name
+symbols_str_no_comma = '_'.join(symbols)
+plot_filename = os.path.join(deliverables_dir, f'Ohlson_O_Score_{symbols_str_no_comma}.png')
+plt.savefig(plot_filename)
 
 # Show plot
 plt.show()
